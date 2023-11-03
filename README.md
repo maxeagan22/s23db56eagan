@@ -1,7 +1,8 @@
-# f23wb56eagan
+# s23db56eagan
 Max Eagan
-Repository for Web Apps Lab 10 and Assignment 10 
-https://f23wb56eagan.onrender.com/
+Repository for Web Apps Lab 11 and Assignment 11
+https://s23db56eagan.onrender.com
+
 
 Attrites and Types
 name:string
