@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+
+  .container-fluid
+    .row  
+      -
+        let items = [
+          { name: 'Sofa', finish: "Leather", price: 800},
+          { name: 'Table', finish: 'Wood', price: 370},
+          { name: 'Chair', finish: 'Metal', price: 150}
+        ]
+      
+      each item in items
+        .col-sm-2
+          .item
+            h3= item.name
+            p Finish: #{item.finish}
+            p Price: #{item.price}

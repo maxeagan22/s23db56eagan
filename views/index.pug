@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome Max!
+  button(type="button", class="btn btn-dark", onclick="goFaster()") Press Me
+  div#faster Increase the speed
+
+  script.
+    let mph = 20;
+    let change = 1;
+
+    function goFaster(){
+      mph += change;
+      change++; 
+      document.getElementById("faster").innerText = `MPH ${mph} with change ${change}`;
+    }

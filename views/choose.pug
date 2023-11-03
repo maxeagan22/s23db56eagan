@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  -const image_names = ['bed.jpg', 'chair.jpg', 'desk.jpg', 'sofa.jpg', 'table.jpg']
+
+  -const number = 3
+  - for (let i = 0; i < number; i++)
+    - const randomNum = Math.floor(Math.random() * 5)
+    - const randomImage = image_names[randomNum]
+    img(src=`/images/${randomImage}`, alt=randomImage, height='300', width='300')
+
