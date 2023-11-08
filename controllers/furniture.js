@@ -18,9 +18,25 @@ exports.furniture_detail = function(req, res){
 }
 
 // Handle furniture create on POST
-exports.furniture_create_post = function(req, res){
-    res.send('NOT IMPLEMENTED: Furniture create POST');
-}
+exports.furniture_create_post = async function(req,res){
+    console.log(req.body);
+    let document = new Furniture();
+    
+    // We are looking for a body since POST does not have a query
+    // We want a json object
+    document.name = req.body.name;
+    document.finish = req.body.finish;
+    document.price = req.body.price;
+    try{
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{error: ${err}}`);
+    }
+
+};
 
 // Handle furniture delete form on DELETE
 exports.furniture_delete = function(req, res){
