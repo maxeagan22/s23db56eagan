@@ -1,9 +1,16 @@
 let Furniture = require('../models/furniture');
 
 // List of all furniture
-exports.furniture_list = function(req, res){
-    res.send('NOT IMPLEMETED: Furniture list');
-}
+exports.furniture_list = async function(req, res){
+    try{
+        theFurniture = await Furniture.find();
+        res.send(theFurniture);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
 
 // Get details for specific item
 exports.furniture_detail = function(req, res){
