@@ -31,3 +31,16 @@ exports.furniture_delete = function(req, res){
 exports.furniture_update_put = function(req, res){
     res.send('NOT IMPLEMENTED: Furniture update PUT' + req.params.id);
 }
+
+// Views 
+// Handle a show all view
+exports.furniture_view_all_Page = async function(req, res){
+    try{
+        theFurniture = await Furniture.find();
+        res.render('furniture', { title: 'Costume Search Results', results: theFurniture });
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};

@@ -73,7 +73,7 @@ async function recreateDB(){
   });
 
   instance3.save().then(doc=>{
-    console.log('Third object saced')}
+    console.log('Third object saved')}
   ).catch(err=>{
     console.error(err)
   });

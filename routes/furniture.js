@@ -1,9 +1,8 @@
 var express = require('express');
+const furniture_controllers = require('../controllers/furniture');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('furniture', { title: 'Search Results - Furniture' });
-});
+// GET furniture
+router.get('/', furniture_controllers.furniture_view_all_Page);
 
 module.exports = router;
