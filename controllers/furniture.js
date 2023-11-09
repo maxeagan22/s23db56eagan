@@ -12,10 +12,17 @@ exports.furniture_list = async function(req, res){
     }
 };
 
-// Get details for specific item
-exports.furniture_detail = function(req, res){
-    res.send('NOT IMPLEMETED: Furniture detail' + req.params.id);
-}
+// Get details for specific furniture item
+exports.furniture_detail = async function(req,res){
+    console.log("Detail " + req.params.id);
+    try{
+        result = await Furniture.findById(req.params.id);
+        res.send(result);
+    }catch(error){
+        res.status(500);
+        res.send(`{"error": document for id ${req.params.id} not found}`);
+    }
+};
 
 // Handle furniture create on POST
 exports.furniture_create_post = async function(req,res){

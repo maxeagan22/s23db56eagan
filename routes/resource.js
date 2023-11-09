@@ -8,6 +8,7 @@ let furniture_controller = require('../controllers/furniture');
 // API Route
 router.get('/', api_controller.api);
 
+
 // Furniture Route
 
 // POST Request for creating Furniture.
