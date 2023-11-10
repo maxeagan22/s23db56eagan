@@ -51,9 +51,38 @@ exports.furniture_delete = function(req, res){
 }
 
 // Handle furniture update form on PUT
-exports.furniture_update_put = function(req, res){
-    res.send('NOT IMPLEMENTED: Furniture update PUT' + req.params.id);
-}
+exports.furniture_update_put = async function(req, res){
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`);
+    try{
+        let toUpdate = await Furniture.findById(req.params.id);
+        // Do update of properties
+        if(req.body.furniture_type){
+            toUpdate.furniture_type = req.body.furniture_type;
+        }
+        if(req.body.finish){
+            toUpdate.finish = req.body.finish; 
+        }
+        if(req.body.price){
+            toUpdate.price = req.body.price;
+        }
+
+        // Handle Checkbox 
+        if(req.body.checkboxsale){
+            toUpdate.sale = true; 
+        }
+        else{
+            toUpdate.sale = false; 
+        }
+
+        // Get results 
+        let result = await toUpdate.save();
+        console.log('Sucess ' +result);
+        res.send(result);
+    }catch(err){
+        res.status(500);
+        res.send(`{error: ${err}: Update for id ${req.params.id} failed}`);
+    }
+};
 
 // Views 
 // Handle a show all view
