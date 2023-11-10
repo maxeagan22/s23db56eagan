@@ -46,9 +46,17 @@ exports.furniture_create_post = async function(req,res){
 };
 
 // Handle furniture delete form on DELETE
-exports.furniture_delete = function(req, res){
-    res.send('NOT IMPLEMENTED: Furniture delete DELETE' + req.params.id);
-}
+exports.furniture_delete = async function(req, res){
+    console.log('Delete ' + req.params.id);
+    try{
+        result = await Furniture.findByIdAndDelete(req.params.id);
+        console.log('Removed ' + result);
+        res.send(result);
+    }catch(err){
+        res.status(500);
+        res.send(`{error: Error deleting ${err}}`);
+    }
+};
 
 // Handle furniture update form on PUT
 exports.furniture_update_put = async function(req, res){
