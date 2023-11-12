@@ -101,6 +101,18 @@ exports.furniture_view_all_Page = async function(req, res){
     }
     catch(err){
         res.status(500);
-        res.send(`{"error": ${err}}`);
+        res.send(`{'error': ${err}}`);
+    }
+};
+
+// Handle a show one view with id specified by query
+exports.furniture_view_one_Page = async function(req, res){
+    console.log('Single view for id ' + req.query.id);
+    try{
+        result = await Furniture.findById(req.query.id);
+        res.render('furnituredetail', {title: 'Furniture Detail', toShow: result });
+    }catch(err){
+        res.status(500);
+        res.send(`{'Error:' '${err}'}`);
     }
 };
