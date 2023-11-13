@@ -8,4 +8,7 @@ router.get('/', furniture_controllers.furniture_view_all_Page);
 // GET detail furniture page 
 router.get('/detail', furniture_controllers.furniture_view_one_Page);
 
+// GET create furniture page
+router.get('/create', furniture_controllers.furniture_create_Page);
+
 module.exports = router;

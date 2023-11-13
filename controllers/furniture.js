@@ -97,7 +97,7 @@ exports.furniture_update_put = async function(req, res){
 exports.furniture_view_all_Page = async function(req, res){
     try{
         theFurniture = await Furniture.find();
-        res.render('furniture', { title: 'Costume Search Results', results: theFurniture });
+        res.render('furniture', { title: 'Furniture Search Results', results: theFurniture });
     }
     catch(err){
         res.status(500);
@@ -113,6 +113,17 @@ exports.furniture_view_one_Page = async function(req, res){
         res.render('furnituredetail', {title: 'Furniture Detail', toShow: result });
     }catch(err){
         res.status(500);
-        res.send(`{'Error:' '${err}'}`);
+        res.send(`{'Error': '${err}'}`);
+    }
+};
+
+// Handle building view for creating a piece of furniture
+exports.furniture_create_Page = function(req, res){
+    console.log('Create view');
+    try{
+        res.render('furniturecreate',{title: 'Furniture Create'});
+    }catch(err){
+        res.status(500);
+        res.send(`{Error': '${err}'}`);
     }
 };

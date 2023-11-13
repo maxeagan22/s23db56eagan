@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title 
+  
+  form(id='FurnitureForm',action='/resource/furniture', method='POST')
+    .form-group 
+      label.furnitureAttr(for='furnitureName') Furniture Name
+      input#furnitureName(type='text', name='furnitureName')
+    .form-group 
+      label.furnitureAttr(for='furnitureFinish') Furniture Finish
+      input#furnitureFinish(type='text', name='furnitureFinish')
+    .form-group 
+      label.furnitureAttr(for='furniturePrice') Furniture Price
+      input#furniturePrice(type='text', name='furniturePrice')
+    input(type='submit')
+
+    script.
+      document.forms.namedItem(="FurnitureForm").addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO show user form is being submitted
+        fetch(event.target.action, {
+            method:'POST',
+            body: new URLSearchParams(new FormData(event.target))
+        }).then((resp) => {
+            return resp.json();
+        }).then((body) => {
+            alert('Save succeded!')
+            // Handle Body
+        }).catch((error) => {
+            alert('Save failed ' + error)
+            // Handle error
+        });
+      });
