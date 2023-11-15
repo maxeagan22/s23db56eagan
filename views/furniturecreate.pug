@@ -16,7 +16,7 @@ block content
     input(type='submit')
 
     script.
-      document.forms.namedItem(="FurnitureForm").addEventListener('submit', (event) => {
+      document.forms.namedItem(='FurnitureForm').addEventListener('submit', (event) => {
         event.preventDefault();
         // TODO show user form is being submitted
         fetch(event.target.action, {

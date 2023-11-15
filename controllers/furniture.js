@@ -84,7 +84,7 @@ exports.furniture_update_put = async function(req, res){
 
         // Get results 
         let result = await toUpdate.save();
-        console.log('Sucess ' +result);
+        console.log('Sucess ' + result);
         res.send(result);
     }catch(err){
         res.status(500);
@@ -122,6 +122,18 @@ exports.furniture_create_Page = function(req, res){
     console.log('Create view');
     try{
         res.render('furniturecreate',{title: 'Furniture Create'});
+    }catch(err){
+        res.status(500);
+        res.send(`{Error': '${err}'}`);
+    }
+};
+
+// Handle building view for updating a piece of furniture
+exports.furniture_update_Page = async function(req, res){
+    console.log('Update view for item ' + req.query.id);
+    try{
+        let result = await Furniture.findById(req.query.id);
+        res.render('furnitureupdate', {title: 'Furniture Update', toShow:result});
     }catch(err){
         res.status(500);
         res.send(`{Error': '${err}'}`);

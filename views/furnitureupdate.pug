@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+
+  -let furnitureid = toShow._id
+  -let furnitureName = toShow.name
+  -let furnitureFinish = toShow.finish
+  -let furniturePrice = toShow.price
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{furnitureid}
+  -let actionid = "/resource/furniture/" + furnitureid
+  form(id='FurnitureForm', action=actionid, method='PUT')
+    .form-group 
+      label.furnitureAttr(for='furnitureName') Furniture name
+      input#furnitureName(type='text', name='furnitureName', value = furnitureName)
+    .form-group 
+      label.furnitureAttr(for='furnitureFinish') Furniture finish
+      input#furnitureFinish(type='text',name='finish', value = furnitureFinish)
+    .form-group
+      label.furnitureAttr(for='furniturePrice') Furniture Price
+      input#furniturePrice(type='number', name='price', value = furniturePrice)
+    input(type='submit')
+
+    script.
+      document.forms.namedItem('FurnitureForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO show user form is being submitted
+        fetch(event.target.action, {
+          method:'PUT',
+          body: new URLSearchParams(new FormData(event.target))
+        }).then((resp) => {
+            return resp.json();
+        }).then((body) => {
+            alert('Update succeded!')
+            // Handle Body
+        }).catch((error) => {
+            alert('Update failed ' + error)
+            // Handle error
+        });
+      });
