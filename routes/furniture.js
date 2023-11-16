@@ -14,4 +14,7 @@ router.get('/create', furniture_controllers.furniture_create_Page);
 // GET create update page
 router.get('/update', furniture_controllers.furniture_update_Page);
 
+// Get furniture delete page 
+router.get('/delete', furniture_controllers.furniture_delete_Page);
+
 module.exports = router;
