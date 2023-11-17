@@ -20,8 +20,8 @@ block content
         event.preventDefault();
         // TODO show user form is being submitted
         fetch(event.target.action, {
-            method:'POST',
-            body: new URLSearchParams(new FormData(event.target))
+          method:'POST',
+          body: new URLSearchParams(new FormData(event.target))
         }).then((resp) => {
             return resp.json();
         }).then((body) => {
