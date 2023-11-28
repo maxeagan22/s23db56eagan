@@ -1,17 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome Max!
-  button(type="button", class="btn btn-dark", onclick="goFaster()") Press Me
-  div#faster Increase the speed
-
-  script.
-    let mph = 20;
-    let change = 1;
-
-    function goFaster(){
-      mph += change;
-      change++; 
-      document.getElementById("faster").innerText = `MPH ${mph} with change ${change}`;
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/furniture") Take me to furniture
+    br
+    a(href="/logout") Logout
