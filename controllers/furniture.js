@@ -140,14 +140,3 @@ exports.furniture_update_Page = async function(req, res){
     }
 };
 
-// Handle a delete one view page with id
-exports.furniture_delete_Page = async function(req,res){
-    console.log('Delete view for id ' + req.query.id);
-    try{
-        result = await Furniture.findById(req.query.id);
-        res.render('furnituredelete', {title: 'Furniture Delete', toShow:result});
-    }catch(err){
-        res.status(500);
-        res.send(`{Error: '${err}'}`);
-    }
-};
