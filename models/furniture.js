@@ -9,9 +9,8 @@ const furnitureSchema = new mongoose.Schema({
         validate: {
             validator: function(value) {
                 // Custom validator function to check if the price is between 15 and 2000
-                return value >= 15 && value <= 2000;
+                return value >= 20 && value <= 1000;
             },
-            message: 'Price must be between 15 and 2000.',
         },
     },
 });
