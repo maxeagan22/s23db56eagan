@@ -49,12 +49,23 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 });
 
 router.get('/logout', function(req, res) {
-  req.logout(); // Removed next, as it's not defined
-  res.redirect('/');
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 });
 
-router.get('/ping', function(req, res){
-  res.status(200).send("pong!");
+// A little function to check if we have an authorized user and continue on
+// or redirect to login.
+const secured = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.redirect("/login");
+};
+
+router.get('/ping', function(req, res) {
+  res.status(200).send('pong!');
 });
 
-module.exports = router; 
+module.exports = router;
